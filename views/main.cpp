@@ -4,6 +4,7 @@
 #include <time.h>
 #include "../controllers/controllers.h"
 
+//alphabet only validation
 bool alphabetOnly(char *name){
    int len = strlen(name);
    for(int i=0; i<len; i++){
@@ -14,6 +15,7 @@ bool alphabetOnly(char *name){
    return true;
 }
 
+//validation for unique name consists of alphabets only
 bool isValidName(char *name){
    curr = head;
    while(curr && strcmp(curr->name, name) != 0){
@@ -25,6 +27,7 @@ bool isValidName(char *name){
    return true;
 }
 
+//prompt new dish to the menu
 void menuAddDish(){
    char name[255];
    do{
@@ -51,6 +54,7 @@ void menuAddDish(){
    return;
 }
 
+//prompt dish that user wanted to remove
 void menuRemoveDish(){
    if(!head){
       printf("Please input dish first!"); getchar();
@@ -69,6 +73,7 @@ void menuRemoveDish(){
    printf("Press enter to continue..."); getchar();
 }
 
+//validation for cust's name
 bool isValidCustName(char *name){
    for(int i=0; i<strlen(name); i++){
       if(name[i] == ' ' || (name[i] >= '0' && name[i] <= '9')){
@@ -78,6 +83,7 @@ bool isValidCustName(char *name){
    return true;
 }
 
+//prompt new customer info to add
 void menuAddCustomer(){
    char name[255];
    do{
@@ -90,6 +96,7 @@ void menuAddCustomer(){
    printf("Press enter to continue..."); getchar();
 }
 
+//prompt customer name to be search
 void menuSearchCust(){
    char name[255];
    do{
@@ -107,6 +114,7 @@ void menuSearchCust(){
    return;
 }
 
+//view customer's list
 void menuViewWarteg(){
    puts("Customer's List");
    viewCust();
@@ -114,6 +122,7 @@ void menuViewWarteg(){
    return;
 }
 
+//prompt cust's name to order menu
 void menuOrder(){
    char custName[255];
    do{
@@ -144,6 +153,7 @@ void menuOrder(){
    printf("\nPress enter to continue..."); getchar();
 }
 
+//prompt cust index to proceed payment
 void menuPayment(){
    int idx;
    printf("Insert the customer's index: ");
@@ -159,7 +169,7 @@ void menuPayment(){
       return;
    }
 
-   //tampilin dan totalan
+   //display and compute total price
    printf("%s\n", table[idx]->name);
    int max = table[idx]->ctr;
    int total = 0;
@@ -173,6 +183,7 @@ void menuPayment(){
    return;
 }
 
+//function to display splash screen
 void splashScreen(){
    puts("Please expand your terminal to full screen!");
    printf("Press enter to continue..."); getchar();
@@ -188,6 +199,7 @@ void splashScreen(){
    fclose(fp);
 }
 
+//detecting OS to display
 const char* detectOS() {
    #ifdef _WIN32
    return "Windows 32-bit";
