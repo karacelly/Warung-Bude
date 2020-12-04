@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include "../models/models.h"
 
+//assign memory for a new dish
 Dish *createNewDish(char *name, int price, int qty){
    Dish *temp = (Dish*) malloc(sizeof(Dish));
    strcpy(temp->name, name);
@@ -13,6 +14,7 @@ Dish *createNewDish(char *name, int price, int qty){
    return temp;
 }
 
+//add dish to linked list
 void addDish(char *name, int price, int qty){
    Dish *newDish = createNewDish(name, price, qty);
 
@@ -27,6 +29,7 @@ void addDish(char *name, int price, int qty){
    tail->next = NULL;
 }
 
+//pop head dari dish
 void popHead(){
    if(head && head == tail){
       head = tail = NULL;
@@ -40,6 +43,7 @@ void popHead(){
    }
 }
 
+//pop tail dari dish
 void popTail(){
    if(head && head == tail){
       head = tail = NULL;
@@ -53,6 +57,7 @@ void popTail(){
    }
 }
 
+//remove dish by name
 void removeDish(char *name){
    if(!head) return;
    else if(strcmp(head->name, name) == 0) popHead();
@@ -70,6 +75,7 @@ void removeDish(char *name){
    return;
 }
 
+//search dish by name
 int searchDish(char *name){
    curr = head;
    while(curr && strcmp(curr->name, name) != 0){
@@ -79,6 +85,7 @@ int searchDish(char *name){
    else return curr->qty;
 }
 
+//view all dishes
 void viewDish(){
    printf("\t\tBude's Menu\n");
    printf("===================================================\n");
@@ -96,6 +103,7 @@ void viewDish(){
 const int size = 30;
 struct Customer *table[size] = {NULL};
 
+//generate hash value with djb2
 unsigned long hash(char *str) {
    unsigned long hash = 5381;
    int c;
@@ -105,6 +113,7 @@ unsigned long hash(char *str) {
    return hash%size;
 }
 
+//allocate memory for new customer
 struct Customer *createNewCust(char *name){
    struct Customer *temp = (Customer *) malloc(sizeof(Customer));
    strcpy(temp->name, name);
@@ -115,6 +124,7 @@ struct Customer *createNewCust(char *name){
    return temp;
 }
 
+//add customer name to the hash table
 void addCust(char *name){
    Customer *temp = createNewCust(name);
    int index = hash(temp->name);
@@ -131,6 +141,7 @@ void addCust(char *name){
    }
 }
 
+//search customer in hash table
 int searchCust(char *name){
    int index = hash(name);
    if(table[index]){
